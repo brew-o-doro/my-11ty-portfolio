@@ -6,7 +6,7 @@ it uses:
 - site layouts are included in _includes dir
 - .eleventy.js is the config file
 
-###Commands
+### Commands
 npx @11ty/eleventy => to build /it will be put into _site directory
 npx @11ty/eleventy --serve => to serve dev site
 
