@@ -4,6 +4,7 @@ it uses:
 - nunjuks
 - md for the blog pages
 - site layouts are included in _includes dir
+- .eleventy.js is the config file
 
 ###Commands
 npx @11ty/eleventy => to build /it will be put into _site directory
