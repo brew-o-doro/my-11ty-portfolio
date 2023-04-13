@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="icon" href="https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Fpng.pngtree.com%2Felement_our%2Fpng_detail%2F20181013%2Fcode-icon-design-vector-png_125856.jpg&sp=1681339017T85c5223192df4b092658ff1fd6d621cb272436b0b71a092fbdec28e013222ee2" />
+  <!-- Grab title from the page data and dump it here -->
+  <title>All Aboard the Rails Express</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="https://kit.fontawesome.com/580dbd3c82.js" crossorigin="anonymous"></script>
+   
+</head>
+<body>
+
+  <!-- Grab the content from the page data, dump it here, and mark it as safe -->
+  <!-- Safe docs: https://mozilla.github.io/nunjucks/templating.html#safe -->
+ <!--  <nav>
+    <a href="/">Home</a>
+  </nav>
+ -->
+<!--  <nav class="footer">
+  <div class="links">
+          <a href="/">Home</a>
+          <span class="divider">|</span>
+          <a href="/links">My Links</a>
+          <span class="divider">|</span>
+          <a href="/about">About</a>
+        </div>
+   
+ </nav> -->
+  <div class="wrapper home">
+    <div class="content">
+      
+
+<div class="wrapper">
+	<h2>All Aboard the Rails Express</h2>
+  <div class="content">
+    <p>This blog post will be focused on:
+Rails Nested Resources
+ActiveRecord Query Methods</p>
+<p>This blog post will be discussing these through the lens of my own Brew-Ti-Ful Reviews Rails App.</p>
+<h3>What is Brew-Ti-Ful Reviews?</h3>
+<p>To put it simply, Brew-Ti-Ful Reviews is an app built with Rails that allows users to add coffees they have tasted or have yet to taste and give them reviews.</p>
+<h3>Rails Nested Resources</h3>
+<p>Nested resources in rails give us the ability to document parent/child relationships directly in our routes.</p>
+<pre><code class="language-ruby">class Coffee &lt; ApplicationRecord
+  has_many :reviews
+end 
+class Review &lt; ApplicationRecord
+  belongs_to :coffee
+end
+</code></pre>
+<p>Here we have the parent (Coffee) and the child(Review) taken from the two models User and Review. Nested routes are another way of capturing these relationships through your routing. This means that our URLs will look aesthetically pleasing and not a random string of numbers and characters.</p>
+<pre><code class="language-ruby">resources :coffees do
+    resources :reviews, only: [:new, :index, :show]
+end
+</code></pre>
+<p>This action will create routes for our coffees and this will also route our reviews to a ReviewsController. Nested Routes will also provide us with those aesthetically pleasing URL paths I had mentioned earlier.</p>
+<pre><code class="language-ruby">coffee_reviews GET    /coffees/:coffee_id/reviews(.:format)                                                    reviews#index
+new_coffee_review GET    /coffees/:coffee_id/reviews/new(.:format)                                                reviews#new
+coffee_review GET    /coffees/:coffee_id/reviews/:id(.:format)                                                reviews#show
+coffees GET    /coffees(.:format)                                                                       coffees#index
+</code></pre>
+<p>So if we wanted to view all the reviews for a particular coffee, the URL would look like /coffees/1/reviews in your browser.</p>
+<p>This handy method will also create routing helpers such as new_coffee_review.</p>
+<p>Nested Resources can also have deep nesting like this:</p>
+<pre><code class="language-ruby">resources :coffees do
+    resources :reviews, only: [:new, :index, :show]
+      resources :photos
+end
+</code></pre>
+<p>However, doing these deeply nested resources is a good way to get yourself lost with all these cumbersome route helpers and URL paths. So in keeping up with good programming practices, it would be best to avoid deeply nesting routes.</p>
+<p>With Nested Resources, you can utilize this powerful tool to help keep your routes neat, tidy, and dynamic.</p>
+<h3>ActiveRecord::Query Methods</h3>
+<p>Before entering the Rails mod for Flatiron I had gotten used to writing methods with traditional Ruby syntax. It was not until this project that I discovered the fascinating world of ActiveRecord Query Methods.
+One of my favorite things about programming has been discovering new ways to do things that I have previously already learned how to do. So when I found these new query methods to write code similar to what I was doing with the plain old ruby syntax I was astonished. ActiveRecord Query Methods fire up commands and do them through the database essentially speeding up your commands by doing it in the database.</p>
+<p>Here are some of my favorite query methods that I learned while working on this project.</p>
+<h4>build</h4>
+<p>The build method is the equivalent of calling .new on an object. Just like new, build does not automatically save it to the database so you will need to call a save method on the variable.</p>
+<pre><code class="language-ruby">@review = @coffee.reviews.build
+</code></pre>
+<h4>find_or_create_by</h4>
+<p>The find_or_create_by the method checks whether a record with the specified attributes exists. If it doesn't, then create is called. Essentially, this is telling our database to find something if that something exists then proceed, however, if there is no record in the database then create a new entry in the database for it. Really nifty method here!</p>
+<pre><code class="language-ruby">@user = User.find_or_create_by(email: user_email)
+</code></pre>
+<p>Here’s an example of where I used this query method in my project to create a controller action for omniauth.
+With these new query methods, I feel like I have added a new tool to my developer belt! I definitely recommend you take a look at the Rails Guides here for way more query method goodness!</p>
+
+  </div>
+</div>
+    </div>
+  </div>
+  <footer class="footer">
+        <div class="links">
+          <a href="/">Home</a>
+          <span class="divider">|</span>
+          <a href="/links">My Links</a>
+          <span class="divider">|</span>
+          <a href="/about">About</a>
+        </div>
+  </footer>
+</body>
+</html>
