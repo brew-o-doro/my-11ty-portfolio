@@ -7,6 +7,6 @@ it uses:
 - .eleventy.js is the config file
 
 ### Commands
-npx @11ty/eleventy => to build /it will be put into _site directory
-npx @11ty/eleventy --serve => to serve dev site
+- npx @11ty/eleventy => to build /it will be put into _site directory
+- npx @11ty/eleventy --serve => to serve dev site
 
