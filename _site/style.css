@@ -206,7 +206,7 @@ a:hover {
   justify-content: flex-end;
 }
 .illustration {
-  max-width: 180px;
+  max-w.idth: 180px;
   max-height: var(--image-max-width);
   margin-top: 1rem;
   margin-right: 2rem;
@@ -225,4 +225,15 @@ a:hover {
 }
 .controls {
   margin: 3rem 0 2rem;
+}
+
+/* link content on link page override */
+
+.linkItem {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.linkFirstItem {
+  margin-right: 10px;
 }
